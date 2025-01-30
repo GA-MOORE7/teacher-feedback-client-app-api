@@ -76,7 +76,7 @@ router.post('/create-level', async (req, res) => {
 //Get All Levels
 router.get('/getAllLevels', async (req, res) => {
     try{
-        const data = await Level.find();
+        const data = await Level.find().sort({ levelName: 1});
         res.json(data);
     }
     catch(error){
