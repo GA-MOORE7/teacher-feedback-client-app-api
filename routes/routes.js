@@ -107,7 +107,10 @@ router.get('/level/:levelName/month/:monthNumber/stories', async (req, res) => {
         const level = await Level.findOne({ levelName: req.params.levelName}).populate({
             path: 'months',
             match: { monthNumber: req.params.monthNumber},
-            populate: { path: 'stories'}
+            populate: { 
+             path: 'stories',
+             options: { sort: { storyNumber: 1} }
+            }
         });
 
         if (!level) {
