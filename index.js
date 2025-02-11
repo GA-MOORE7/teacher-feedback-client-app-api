@@ -26,6 +26,11 @@ database.once('connected', () => {
 })
 
 
-app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
-})
+// app.listen(3000, () => {
+//     console.log(`Server Started at ${3000}`)
+// })
+
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
+});
