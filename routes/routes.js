@@ -87,7 +87,12 @@ router.get('/getAllLevels', async (req, res) => {
 // Get all months for a specific level
 router.get('/level/:levelName/months', async (req, res) => {
     try {
-        const level = await Level.findOne({ levelName: req.params.levelName }).populate('months');
+        const level = await Level.findOne({ levelName: req.params.levelName })
+        .populate({
+            path: 'months',
+            options: { sort: { monthNumber: 1 } }
+
+        });
 
         if (!level) {
             return res.status(404).json({ message: "level not found" });
